@@ -6,3 +6,6 @@ Because if I want to judge whether the person is happy or not, reading his/her r
 Thus I write this function. 
 
 Google NLP: I use Google NLP to get text's overall sentiment and analyze all entities in this sentence and get their sentiment separately.
+
+
+![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/GlanceTwitterContent.PNG)
