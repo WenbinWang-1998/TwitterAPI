@@ -25,7 +25,7 @@ Using this as key to execute the Twitter API by using tweepy.OAuthHandler functi
     auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
     api = tweepy.API(auth)
 ```
-First of all, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
+Secondly, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
 Here's the code:
 ```
     tweets = api.user_timeline(screen_name=id, count=200)
@@ -44,5 +44,13 @@ Using my twitter as an example, if I update a tweet which the content is Hello W
 
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
 **Picture 2**
+
+Thirdly, **it's the most important part**. Because I want to get the users' emotion, so I have to remove all the tweets which are replys to other people. I need to
+find the tweets from themselves instead. Here's an example: A friend of mine is so happy. So, I reply to him with positive words. But I am sad and I use some negative words in my own tweets. Something like this:
+
+### Only Tweets:
+![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/OnlyTweets.PNG)
+### Tweets and Reply:
+![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/TweetsAndReply.PNG)
 
 
