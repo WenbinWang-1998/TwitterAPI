@@ -8,8 +8,20 @@ Thus I write this function.
 Google NLP: I use Google NLP to get text's overall sentiment and analyze all entities in this sentence and get their sentiment separately.
 
 
-### Part 1: Twitter API
+## Part 1: Twitter API
 First of all, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
+Here's the code:
+```
+    tweets = api.user_timeline(screen_name=id, count=200)
+
+    file=open('myTwitterApi','w')
+    #Put all tweets into a json file
+    for tweet in tweets:
+        string=json.dumps(tweet._json)
+        obj=json.loads(string)
+        json.dump(obj, file, indent=4, sort_keys=True)
+    file.close()
+```
 Using my twitter as an example, if I update a tweet which the content is Hello World! Here's the result :
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/GlanceTwitterContent.PNG)
                             **Picture 1**
