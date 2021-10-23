@@ -9,6 +9,7 @@ Google NLP: I use Google NLP to get text's overall sentiment and analyze all ent
 
 
 ## Part 1: Twitter API
+### 1. 
 First of all, we have to get the permission of Twitter API by adding consumer key, access key, etc. Here's what we should use:
 
 ```
@@ -25,6 +26,7 @@ Using this as key to execute the Twitter API by using tweepy.OAuthHandler functi
     auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
     api = tweepy.API(auth)
 ```
+### 2.
 Secondly, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
 Here's the code:
 ```
@@ -45,13 +47,30 @@ Using my twitter as an example, if I update a tweet which the content is Hello W
 ### Tweet content:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
 
+### 3.
 
-Thirdly, **it's the most important part**. Because I want to get the users' emotion, so I have to remove all the tweets which are replys to other people. I need to
-find the tweets from themselves instead. Here's an example: A friend of mine is so happy. So, I reply to him with positive words. But I am sad and I use some negative words in my own tweets. Something like this:
+**Thirdly, it's the most important part. Because I want to get the users' emotion, so I have to remove all the tweets which are replys to other people. I need to
+find the tweets from themselves instead. Here's an example: A friend of mine is so happy. So, I reply to him with positive words. But I am sad and I use some negative words in my own tweets. Something like this:**
 
 ### Only Tweets:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/OnlyTweets.PNG)
 ### Tweets and Reply:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/TweetsAndReply.PNG)
+
+Thus, I need to find a way to get all of the tweets which are not replys and put them into a json file. I used the in_reply_to_status_id_str, the description in Twitter Developer Platform is: "Nullable. If the represented Tweet is a reply, this field will contain the string representation of the original Tweet’s ID." I used this attribute to judge if this tweets is a reply or not and put it into the json file. 	
+Here's my function:
+```
+    #Get tweets which are not reply
+    file=open('NotReplies','w')
+    for tweet in tweets:
+        if hasattr(tweet, 'in_reply_to_status_id_str'):
+            if tweet.in_reply_to_status_id is None:
+                replies=json.dumps(tweet._json)
+                obj=json.loads(replies)
+                json.dump(obj,file,indent=4,sort_keys=True)
+    file.close()
+```
+
+## Part 2: Google NLP
 
 
