@@ -1,11 +1,6 @@
 # EC601-Project
 Including wenbin wang's EC601 Project
-## ABSTRACT
-Twitter API: I use this API to get the user's all tweets and get all replys/remove all replys. This function can help me filter the tweets. 
-Because if I want to judge whether the person is happy or not, reading his/her replys to other people is useless, we should focus on his or her own tweets.
-Thus I write this function. 
 
-Google NLP: I use Google NLP to get text's overall sentiment and analyze all entities in this sentence and get their sentiment separately.
 
 
 ## Part 1: Twitter API
@@ -130,3 +125,41 @@ def entities_sentiment(doc):
 ### Result format by using PyCharm:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/OverallSentiment.PNG)
 
+## Part 3: The Product: "Encourage Machine"
+
+### 1. User Story
+The aim of this product is to encourage users when they are unhappy. The judgement way is to collect the recent tweets from users to analyze the sentiment in this tweets. If the user is unhappy, sent some encouraging sentence and collecting the blessing from other people to send to this unhappy user. 
+Users Current Mood Judgement
+
+### 2. How Twitter API and Google NLP used in this Product
+Twitter API: I use this API to get the user's all tweets and get all replys/remove all replys. This function can help me filter the tweets. 
+Because if I want to judge whether the person is happy or not, reading his/her replys to other people is useless, we should focus on his or her own tweets.
+Thus I write this function. 
+
+Google NLP: I use Google NLP to get text's overall sentiment and analyze all entities in this sentence and get their sentiment separately.
+
+### 3. MVP
+The MVP of this product is the function which can extract the tweets' content and judge the emotion in them.
+
+### 4. Implementation
+First of all, I extracted only text in tweets because other attributes are useless in my product and I used a string to collect all the tweets texts from the user. Here's the code: 
+```
+    string = ""
+    file=open('OwnText','w')
+    for tweet in tweets:
+        if hasattr(tweet, 'in_reply_to_status_id_str'):
+            if tweet.in_reply_to_status_id is None:
+                replies=json.dumps(tweet._json)
+                obj=json.loads(replies)
+                json.dump(obj["text"],file,indent=4,sort_keys=True)
+                string = string + json.dumps(obj["text"])
+                file.write('\n')
+    file.close()
+```
+Secondly, I put the content returns from the Twitter API into the Google NLP function and I can get the user's overall emotion. I can either extract the most recent tweets from the user to analyze the emotion or extract many recent tweets to analyze the overall emotion. When the overall sentiment's score is 0, that means those tweets includes both positive and negative emotion tweets, then I reduce the number of the tweets to the most recent version.
+
+## References
+1. https://cloud.google.com/natural-language/docs/quickstart-client-libraries
+2. https://cloud.google.com/natural-language/docs/analyzing-entity-sentiment
+3. https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/tweet
+4. https://fairyonice.github.io/extract-someones-tweet-using-tweepy.html
