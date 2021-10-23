@@ -39,11 +39,12 @@ Here's the code:
     file.close()
 ```
 Using my twitter as an example, if I update a tweet which the content is Hello World! Noticing the text part in the json file. Here's the result :
+### Object in json file:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/GlanceTwitterContent.PNG)
-**Picture 1**
 
+### Tweet content:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
-**Picture 2**
+
 
 Thirdly, **it's the most important part**. Because I want to get the users' emotion, so I have to remove all the tweets which are replys to other people. I need to
 find the tweets from themselves instead. Here's an example: A friend of mine is so happy. So, I reply to him with positive words. But I am sad and I use some negative words in my own tweets. Something like this:
