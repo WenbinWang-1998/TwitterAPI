@@ -12,7 +12,7 @@ Google NLP: I use Google NLP to get text's overall sentiment and analyze all ent
 First of all, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
 Using my twitter as an example, if I update a tweet which the content is Hello World! Here's the result :
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/GlanceTwitterContent.PNG)
-< center >< b > Picture 1 < / b >< /center >
+                            **Picture 1**
 
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
-< center >< b > Picture 2 < / b >< /center >
+                            **Picture 2**
