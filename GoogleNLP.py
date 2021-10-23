@@ -1,4 +1,5 @@
 #reference:https://drive.google.com/file/d/1dNahyZnwgqwUUdbV5I0u68b8pQADBiWi/view
+#https://cloud.google.com/natural-language/docs/quickstart-client-libraries
 
 import os
 import tweepy
