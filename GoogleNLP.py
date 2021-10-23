@@ -1,5 +1,5 @@
-#reference:https://drive.google.com/file/d/1dNahyZnwgqwUUdbV5I0u68b8pQADBiWi/view
-#https://cloud.google.com/natural-language/docs/quickstart-client-libraries
+#reference1 : https://drive.google.com/file/d/1dNahyZnwgqwUUdbV5I0u68b8pQADBiWi/view
+#reference2 : https://cloud.google.com/natural-language/docs/quickstart-client-libraries
 
 import os
 import tweepy
@@ -51,5 +51,5 @@ def analyze_text_sentiment(text):
 
 if __name__ == '__main__':
 
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="D:\EC601_Project1\ec601-project2-nlp-b125dc28fe61.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="json file's path"
     entities_sentiment("I am so happy!")
