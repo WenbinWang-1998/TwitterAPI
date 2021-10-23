@@ -9,7 +9,7 @@ Google NLP: I use Google NLP to get text's overall sentiment and analyze all ent
 
 
 ## Part 1: Twitter API
-### 1. 
+### 1. Preparation
 First of all, we have to get the permission of Twitter API by adding consumer key, access key, etc. Here's what we should use:
 
 ```
@@ -26,7 +26,7 @@ Using this as key to execute the Twitter API by using tweepy.OAuthHandler functi
     auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
     api = tweepy.API(auth)
 ```
-### 2.
+### 2. Put all the tweets into a json file
 Secondly, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
 Here's the code:
 ```
@@ -47,7 +47,7 @@ Using my twitter as an example, if I update a tweet which the content is Hello W
 ### Tweet content:
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
 
-### 3.
+### 3. Extract the tweets are not replys
 
 **Thirdly, it's the most important part. Because I want to get the users' emotion, so I have to remove all the tweets which are replys to other people. I need to
 find the tweets from themselves instead. Here's an example: A friend of mine is so happy. So, I reply to him with positive words. But I am sad and I use some negative words in my own tweets. Something like this:**
@@ -73,4 +73,60 @@ Here's my function:
 
 ## Part 2: Google NLP
 
+### 1. Preparation
+First of all, I downloaded the Google Cloud SDK from official website and I used the PyCharm to set up a project in the same path as SDK.
+Then I download the credential json file to computer and add code, the "Path" should be substituted by the json file's path in my computer:
+```
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="Path"
+```
+### 2. Analyze the overall sentiment of one sentence
+Secondly, I used the language package from Google Cloud to write a simple test to analyze whether the sentiment in a sentence is positive or negative. Using language.LanguageServiceClient(), language.Document() and client.analyze_sentiment() to get the sentiment and use the percentage format to show the result :
+```
+def analyze_text_sentiment(text):
+    client = language.LanguageServiceClient()
+    document = language.Document(content=text, type_=language.Document.Type.PLAIN_TEXT)
+    response = client.analyze_sentiment(document=document)
+    sentiment = response.document_sentiment
+    results = dict(
+        text=text,
+        score=f"{sentiment.score:.1%}",
+        magnitude=f"{sentiment.magnitude:.1%}",
+    )
+    for k, v in results.items():
+        print(f"{k:10}: {v}")
+```
+### Result format by using PyCharm:
+![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/NLP_Sentiment.PNG)
+
+### 3. Analyze the entities sentiment
+Finally, I wrote an entities_sentiment function to get the overall sentiment of multiple sentences and get the emotion from different people. 
+```
+def entities_sentiment(doc):
+    client = language.LanguageServiceClient()
+    document = language.Document(content=doc, type_=language.Document.Type.PLAIN_TEXT)
+    response = client.analyze_entity_sentiment(document=document,encoding_type='UTF32')
+    res=client.analyze_sentiment(document=document,encoding_type='UTF32',)
+    sentiment = res.document_sentiment
+    fin = dict(
+        sentence=doc,
+        overallscore=f"{sentiment.score:.1%}",
+        overallmagnitude=f"{sentiment.magnitude:.1%}",
+    )
+    print("overall sentiment: ")
+    for key, value in fin.items():
+        print(f"{key:15}: {value}")
+    for entity in response.entities:
+        print("-------------------------------------")
+        results = dict(
+            name=entity.name,
+            type=entity.type_.name,
+            salience=f"{entity.salience:.1%}",
+            score=entity.sentiment.score,
+            magnitude=entity.sentiment.magnitude
+        )
+        for key, value in results.items():
+            print(f"{key:15}:  {value}")
+ ```
+### Result format by using PyCharm:
+![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/OverallSentiment.PNG)
 
