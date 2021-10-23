@@ -9,6 +9,22 @@ Google NLP: I use Google NLP to get text's overall sentiment and analyze all ent
 
 
 ## Part 1: Twitter API
+First of all, we have to get the permission of Twitter API by adding consumer key, access key, etc. Here's what we should use:
+
+```
+twitter_keys = {
+        'consumer_key':        'Enter consumer key here',
+        'consumer_secret':     'Enter consumer secret here',
+        'access_token_key':    'Enter access token key here',
+        'access_token_secret': 'Enter access token secret here'
+    }
+```
+Using this as key to execute the Twitter API by using tweepy.OAuthHandler function:
+```
+    auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
+    auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
+    api = tweepy.API(auth)
+```
 First of all, I use package tweepy's api.user_timeline to get 200 of statuses sent from the user. Then I put them all into the "myTwitterApi.json" to get the result. 
 Here's the code:
 ```
@@ -22,9 +38,11 @@ Here's the code:
         json.dump(obj, file, indent=4, sort_keys=True)
     file.close()
 ```
-Using my twitter as an example, if I update a tweet which the content is Hello World! Here's the result :
+Using my twitter as an example, if I update a tweet which the content is Hello World! Noticing the text part in the json file. Here's the result :
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/GlanceTwitterContent.PNG)
-                            **Picture 1**
+**Picture 1**
 
 ![image](https://github.com/WenbinWang-1998/TwitterAPI/blob/main/Image/HelloWorld.PNG)
-                            **Picture 2**
+**Picture 2**
+
+
