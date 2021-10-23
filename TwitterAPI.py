@@ -17,7 +17,7 @@ def get_all_tweets_and_reply(id):
     api = tweepy.API(auth)
 
     #Get 200 tweets
-    tweets = api.user_timeline(screen_name="@elonmusk", count=200)
+    tweets = api.user_timeline(screen_name=id, count=200)
 
     file=open('myTwitterApi','w')
     #Put all tweets into a json file
