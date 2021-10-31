@@ -16,12 +16,16 @@ I use the code listed below to find the error name. I used variable errorTypeAcc
         print("ErrorName: " + err)
 ```
 
-Until now, I found three ways to make the TwitterAPI's input invalid.
+Until now, I found three ways to make the TwitterAPI's input invalid.  
+
 First of all, if at least one variables in consumer_key, consumer_secret, access_token_key, access_token_secret are not exist, it will lead to Unauthorized Error.  
 
 Secondly, if at least one of the variables are null, it will lead to BadRequest Error.  
 
 Finally, if the id you input does not exist, that will lead to NotFound Error.  
+
+Based on that, I used the try except statement in Python to catch the errorType and use a variable to save it.
+When you use the Unit Test. You can pass the test if any of error is showed.
 
 
 
