@@ -104,6 +104,15 @@ def analyze_text_sentiment(text):
 
 if __name__ == '__main__':
 
-    get_all_tweets_and_reply("@wwenbinbu")
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="Credential Path"
+    twitter_keys['consumer_key'] = input("Please Enter the Consumer Key: ")
+    twitter_keys['consumer_secret'] = input("Please Enter the Consumer Secret: ")
+    twitter_keys['access_token_key'] = input("Please Enter the Token Key: ")
+    twitter_keys['access_token_secret'] = input("Please Enter the Token Secret: ")
+    id = input('Please Enter the UserId: ')
+    credential_path = input("Google_Application_Crendentials: ")
+
+    # You can use my Twitter as an example
+    # get_all_tweets_and_reply("@wwenbinbu")
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credential_path
+    entities_sentiment(get_all_tweets_and_reply(id) )
     entities_sentiment(get_all_tweets_and_reply('@wwenbinbu') )
