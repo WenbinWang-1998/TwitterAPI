@@ -67,6 +67,10 @@ def get_all_tweets_and_reply(id):
 if __name__ == '__main__':
     #pass the username to the function, get all his/her tweets and get the replies
     # get_all_tweets_and_reply("@elonmusk")
+    twitter_keys['consumer_key'] = input("Please Enter the Consumer Key: ")
+    twitter_keys['consumer_secret'] = input("Please Enter the Consumer Secret: ")
+    twitter_keys['access_token_key'] = input("Please Enter the Token Key: ")
+    twitter_keys['access_token_secret'] = input("Please Enter the Token Secret: ")
     get_all_tweets_and_reply("@wwenbinbu")
 
 
