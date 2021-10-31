@@ -71,6 +71,9 @@ if __name__ == '__main__':
     twitter_keys['consumer_secret'] = input("Please Enter the Consumer Secret: ")
     twitter_keys['access_token_key'] = input("Please Enter the Token Key: ")
     twitter_keys['access_token_secret'] = input("Please Enter the Token Secret: ")
+    id = input('Please Enter the UserId: ')
+    get_all_tweets_and_reply(id)
+    # You can use my Twitter as an example.
     get_all_tweets_and_reply("@wwenbinbu")
 
 
