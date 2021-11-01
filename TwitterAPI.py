@@ -2,7 +2,7 @@
 
 import tweepy
 import json
-dosfa
+
 
 twitter_keys = {
         'consumer_key':        'Enter consumer key here',
