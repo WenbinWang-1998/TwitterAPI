@@ -10,14 +10,19 @@ twitter_keys = {
         'access_token_key':    'Enter access token key here',
         'access_token_secret': 'Enter access token secret here'
     }
+consumer_key = os.getenv('CONSUMER_KEY')
+consumer_secret = os.getenv('CONSUMER_SECRET')
+access_token_key = os.getenv('ACCESS_TOKEN_KEY')
+access_token_secret = os.getenv('ACCESS_TOKEN_SECRET')
+
 
 # Get top 200 tweets from the user and save them into myTwitterApi.json and save the non-reply tweets into NotReplies.json
 errorTypeAccepter = ''
 def get_all_tweets_and_reply(id):
     global errorTypeAccepter
     try:
-        auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
-        auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token_key, access_token_secret)
         api = tweepy.API(auth)
         #Get 200 tweets
         tweets = api.user_timeline(screen_name=id, count=200)
@@ -67,12 +72,8 @@ def get_all_tweets_and_reply(id):
 if __name__ == '__main__':
     #pass the username to the function, get all his/her tweets and get the replies
     # get_all_tweets_and_reply("@elonmusk")
-    twitter_keys['consumer_key'] = input("Please Enter the Consumer Key: ")
-    twitter_keys['consumer_secret'] = input("Please Enter the Consumer Secret: ")
-    twitter_keys['access_token_key'] = input("Please Enter the Token Key: ")
-    twitter_keys['access_token_secret'] = input("Please Enter the Token Secret: ")
-    id = input('Please Enter the UserId: ')
-    get_all_tweets_and_reply(id)
+    #id = input('Please Enter the UserId: ')
+    #get_all_tweets_and_reply(id)
     # You can use my Twitter as an example.
     get_all_tweets_and_reply("@wwenbinbu")
 
