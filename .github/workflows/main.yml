@@ -38,3 +38,14 @@ jobs:
       - name: install nose
         run:
           pip install nose
+          
+      - name: Test with pytest
+        env:
+            CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+            CONSUMER_SECRET:  ${{ secrets.CONSUMER_SECRET }} 
+            ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
+            ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }} 
+        run: 
+          cd action\ test
+          python TWeetAPI.py
+          python TWeetAPI_test.py
