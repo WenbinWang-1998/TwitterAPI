@@ -6,6 +6,6 @@ def test_output():
 def test_notfound():
     assert e.notFound_error('@wobuzdfayiluan') == "NotFound"
 
-if __name__ == 'TestAdding':
+if __name__ == 'UnitTest':
     test_output()
     test_notfound()
