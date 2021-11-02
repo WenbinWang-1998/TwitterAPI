@@ -27,6 +27,10 @@ Finally, if the id you input does not exist, that will lead to NotFound Error.
 Based on that, I used the try except statement in Python to catch the errorType and use a variable to save it.
 When you use the Unit Test. You can pass the test if any of error is showed.
 
+## 3. Actions
+
+After that, I used Actions in Github and wrote main.yml to run the Unit test automatically when you push or pull request. Also, I used the secret key, so that you can run in the Github and don't need to run in your own laptop.
+
 
 
 
