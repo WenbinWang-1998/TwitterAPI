@@ -45,6 +45,6 @@ jobs:
             CONSUMER_SECRET:  ${{ secrets.CONSUMER_SECRET }} 
             ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
             ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }} 
-        run: 
+        run: |
           cd DifferentError
           python UnitTest.py
